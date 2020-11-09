@@ -6,6 +6,8 @@
     const WAGE_PER_HOUR=20;
     const NUM_OF_WORKING_DAYS=20;
     const MAX_HRS_IN_MONTH=160;
+    let empDailyWageMap = new Map();
+    let empDailyHrsMap = new Map();
     function getEmpHrs(empCheck){
         switch(empCheck){
             case IS_PART_TIME:
@@ -32,6 +34,8 @@
             empHrs=getEmpHrs(empCheck);
             totalEmpHrs+=empHrs;
             empDailyWageArr.push(calcDailyWage(empHrs));
+            empDailyWageMap.set(totalWorkingDays, calcDailyWage(empHrs));
+            empDailyHrsMap.set(totalWorkingDays,empHrs);
         }
         let empWage = calcDailyWage(totalEmpHrs);
         console.log("UC 6 -Total days: "+totalWorkingDays + " Total hrs: "+totalEmpHrs + " Emp wage: "+empWage);
@@ -98,4 +102,7 @@
         }
     
         console.log("UC7G - no. of days employee worked "+ empDailyWageArr.reduce(totalDaysWorked,0));
-}
+        
+        //UC8 Map Functions
+        console.log("UC8A -Emp Wage Map totalHrs: "+Array.from(empDailyWageMap.values()).reduce(totalWages,0));
+    }
